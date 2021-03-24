@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c206960c1fd14e24b01f46c12aeba638" Name="Diagram1" ZoomLevel="82">
+        <EntityTypeShape EntityType="sbModel.category" Width="1.5" PointX="4.375" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="sbModel.customer" Width="1.5" PointX="4.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="sbModel.item" Width="1.5" PointX="7.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="sbModel.purchase" Width="1.5" PointX="6.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="sbModel.purchase_item" Width="1.5" PointX="9" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="sbModel.user" Width="1.5" PointX="4.375" PointY="3.875" IsExpanded="true" />
+        <AssociationConnector Association="sbModel.FK_item_category" ManuallyRouted="false" />
+        <AssociationConnector Association="sbModel.FK_purchase_customer" ManuallyRouted="false" />
+        <AssociationConnector Association="sbModel.FK_purchase_item_item" ManuallyRouted="false" />
+        <AssociationConnector Association="sbModel.FK_purchase_item_purchase1" ManuallyRouted="false" />
+        <AssociationConnector Association="sbModel.FK_purchase_user" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
