@@ -123,7 +123,7 @@ namespace ShadyBusiness
 
             using (OleDbConnection con = new OleDbConnection(constr))
             {
-                using (OleDbCommand cmd = new OleDbCommand("update [item] set item_name = '" + name + "'  description = '" + desc + "' price = '" + price + "' category_id = '" + category + "' quantity = '" + quantity + "' stocked_date = '" + date + "' where item_code = " + ID + ";"))
+                using (OleDbCommand cmd = new OleDbCommand("update [item] set item_name = '" + name + "', description = '" + desc + "', price = '" + price + "', category_id = '" + category + "', quantity = '" + quantity + "', stocked_date = '" + date + "' where item_code = " + ID + ";"))
                 {
 
                     cmd.Connection = con;

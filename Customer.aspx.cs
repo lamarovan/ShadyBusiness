@@ -100,17 +100,17 @@ namespace ShadyBusiness
         {
             GridViewRow row = GridView1.Rows[e.RowIndex];
             int ID = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Values[0]);
-            string name = (row.Cells[1].Controls[0] as TextBox).Text;
-            string address = (row.Cells[2].Controls[0] as TextBox).Text;
-            string number = (row.Cells[3].Controls[0] as TextBox).Text;
-            string email = (row.Cells[4].Controls[0] as TextBox).Text;
-            string type = (row.Cells[5].Controls[0] as TextBox).Text;
+            string name = (row.Cells[2].Controls[0] as TextBox).Text;
+            string address = (row.Cells[3].Controls[0] as TextBox).Text;
+            string number = (row.Cells[4].Controls[0] as TextBox).Text;
+            string email = (row.Cells[5].Controls[0] as TextBox).Text;
+            string type = (row.Cells[6].Controls[0] as TextBox).Text;
 
             string constr = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
 
             using (OleDbConnection con = new OleDbConnection(constr))
             {
-                using (OleDbCommand cmd = new OleDbCommand("update [customer] set customer_name = '" + name + "' customer_address = '" + address + "' customer_number = '" + number + "' customer_email = '" + email + "' member_type = '" + type + "' where member_number = " + ID +";"))
+                using (OleDbCommand cmd = new OleDbCommand("update [customer] set customer_name = '" + name + "', customer_address = '" + address + "', customer_number = '" + number + "', customer_email = '" + email + "', member_type = '" + type + "' where member_number = " + ID ))
                 {
 
                     cmd.Connection = con;
