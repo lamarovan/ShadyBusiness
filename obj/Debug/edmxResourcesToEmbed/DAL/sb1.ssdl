@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="sbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="category">
+    <Key>
+      <PropertyRef Name="category_id" />
+    </Key>
+    <Property Name="category_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="category_name" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="customer">
+    <Key>
+      <PropertyRef Name="member_number" />
+    </Key>
+    <Property Name="member_number" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="customer_name" Type="varchar" MaxLength="80" Nullable="false" />
+    <Property Name="customer_address" Type="varchar" MaxLength="50" />
+    <Property Name="customer_number" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="customer_email" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="member_type" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="item">
+    <Key>
+      <PropertyRef Name="item_code" />
+    </Key>
+    <Property Name="item_code" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="item_name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="description" Type="varchar" MaxLength="200" />
+    <Property Name="price" Type="int" Nullable="false" />
+    <Property Name="category_id" Type="int" Nullable="false" />
+    <Property Name="quantity" Type="int" Nullable="false" />
+    <Property Name="stocked_date" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="purchase">
+    <Key>
+      <PropertyRef Name="purchase_id" />
+    </Key>
+    <Property Name="purchase_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="purchase_date" Type="date" Nullable="false" />
+    <Property Name="total_amount" Type="int" Nullable="false" />
+    <Property Name="member_number" Type="int" Nullable="false" />
+    <Property Name="user_id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="purchase_item">
+    <Key>
+      <PropertyRef Name="purchase_id" />
+      <PropertyRef Name="item_code" />
+    </Key>
+    <Property Name="purchase_id" Type="int" Nullable="false" />
+    <Property Name="item_code" Type="int" Nullable="false" />
+    <Property Name="purchase_unit" Type="int" Nullable="false" />
+    <Property Name="line_total" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_email" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="user_password" Type="varchar" MaxLength="60" Nullable="false" />
+    <Property Name="user_name" Type="varchar" MaxLength="80" Nullable="false" />
+    <Property Name="user_type" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_item_category">
+    <End Role="category" Type="Self.category" Multiplicity="1" />
+    <End Role="item" Type="Self.item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="category">
+        <PropertyRef Name="category_id" />
+      </Principal>
+      <Dependent Role="item">
+        <PropertyRef Name="category_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_purchase_customer">
+    <End Role="customer" Type="Self.customer" Multiplicity="1" />
+    <End Role="purchase" Type="Self.purchase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="customer">
+        <PropertyRef Name="member_number" />
+      </Principal>
+      <Dependent Role="purchase">
+        <PropertyRef Name="member_number" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_purchase_item_item">
+    <End Role="item" Type="Self.item" Multiplicity="1" />
+    <End Role="purchase_item" Type="Self.purchase_item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="item">
+        <PropertyRef Name="item_code" />
+      </Principal>
+      <Dependent Role="purchase_item">
+        <PropertyRef Name="item_code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_purchase_item_purchase1">
+    <End Role="purchase" Type="Self.purchase" Multiplicity="1" />
+    <End Role="purchase_item" Type="Self.purchase_item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="purchase">
+        <PropertyRef Name="purchase_id" />
+      </Principal>
+      <Dependent Role="purchase_item">
+        <PropertyRef Name="purchase_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_purchase_user">
+    <End Role="user" Type="Self.user" Multiplicity="1" />
+    <End Role="purchase" Type="Self.purchase" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="user">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="purchase">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="sbModelStoreContainer">
+    <EntitySet Name="category" EntityType="Self.category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="customer" EntityType="Self.customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="item" EntityType="Self.item" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="purchase" EntityType="Self.purchase" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="purchase_item" EntityType="Self.purchase_item" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_item_category" Association="Self.FK_item_category">
+      <End Role="category" EntitySet="category" />
+      <End Role="item" EntitySet="item" />
+    </AssociationSet>
+    <AssociationSet Name="FK_purchase_customer" Association="Self.FK_purchase_customer">
+      <End Role="customer" EntitySet="customer" />
+      <End Role="purchase" EntitySet="purchase" />
+    </AssociationSet>
+    <AssociationSet Name="FK_purchase_item_item" Association="Self.FK_purchase_item_item">
+      <End Role="item" EntitySet="item" />
+      <End Role="purchase_item" EntitySet="purchase_item" />
+    </AssociationSet>
+    <AssociationSet Name="FK_purchase_item_purchase1" Association="Self.FK_purchase_item_purchase1">
+      <End Role="purchase" EntitySet="purchase" />
+      <End Role="purchase_item" EntitySet="purchase_item" />
+    </AssociationSet>
+    <AssociationSet Name="FK_purchase_user" Association="Self.FK_purchase_user">
+      <End Role="user" EntitySet="user" />
+      <End Role="purchase" EntitySet="purchase" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
