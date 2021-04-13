@@ -1,34 +1,41 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" title="Items" AutoEventWireup="true" CodeBehind="Items.aspx.cs" Inherits="ShadyBusiness.Items" %>
 
 <asp:Content ID="Items" ContentPlaceHolderID="MainContent" runat="server">
+        <style>
+            .form-control {
+                margin:0px;
+            }
+        </style>
     <div class="pt-3">
-        <h3>Items</h3>
-        <div class="form-group">
-            <label>Item Name</label>
-            <asp:TextBox ID="txtItem" runat="server" placeholder="Item Name"></asp:TextBox>
+         <h3>Items</h3>
+        <div class="form-row">
+        <div class="form-group col-md-6 form-group-lg">
+            <label for="txtItem">Item Name</label>
+            <asp:TextBox ID="txtItem" CssClass="form-control" runat="server" placeholder="Item Name"></asp:TextBox>
         </div>
-        <div class="form-group">
-            <label>Description</label>
-            <asp:TextBox ID="txtDescription" runat="server" placeholder="Description"></asp:TextBox>
-        </div>
-        <div class="form-group">
-            <label>Price</label>
-            <asp:TextBox ID="txtPrice" runat="server" placeholder="$XXX"></asp:TextBox>
-        </div>
-        <div class="form-group">
+        <div class="form-group col-md-6">
             <label>Category</label>
-            <asp:DropDownList ID="ddlCategory" runat="server" DataSourceID="SqlDataSource1" DataTextField="category_name" DataValueField="category_id"></asp:DropDownList>
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionStringSB %>" ProviderName="<%$ ConnectionStrings:ConnectionStringSB.ProviderName %>" SelectCommand="SELECT * FROM [category]"></asp:SqlDataSource>
+            <asp:DropDownList ID="ddlCategory"  CssClass="form-control" runat="server" DataSourceID="SqlDataSource1" DataTextField="category_name" DataValueField="category_id"></asp:DropDownList>
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString%>" ProviderName="<%$ ConnectionStrings:ConnectionStringSB.ProviderName %>" SelectCommand="SELECT * FROM [category]"></asp:SqlDataSource>
         </div>
-        <div class="form-group">
+        <div class="form-group col-md-12">
+            <label>Description</label>
+            <asp:TextBox ID="txtDescription" CssClass="form-control" runat="server" placeholder="Description"></asp:TextBox>
+        </div>
+
+        <div class="form-group col-md-6">
             <label>Quantity</label>
-            <asp:TextBox ID="txtQuantity" runat="server" placeholder="10"></asp:TextBox>
+            <asp:TextBox ID="txtQuantity" CssClass="form-control" runat="server" placeholder="10"></asp:TextBox>
         </div>
-        <div class="form-group">
-            <label>Date</label>
+        <div class="form-group col-md-4">
+            <label>Price</label>
+            <asp:TextBox ID="txtPrice" CssClass="form-control" runat="server" placeholder="$XXX"></asp:TextBox>
         </div>
-        <asp:Button ID="btnInsert" runat="server" Text="Insert" CssClass="btn btn-primary" OnClick="btnInsert_Click" />
+         </div>
+        <asp:Button ID="btnInsert" runat="server" Text="Add Item" CssClass="btn btn-primary " OnClick="btnInsert_Click" />
+       
     </div>
+    <br/>
     <div>
         <asp:GridView ID="GridView1" CssClass="table table-hover" runat="server"
             DataKeyNames="item_code"
