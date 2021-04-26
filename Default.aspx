@@ -38,5 +38,5 @@
             </p>
         </div>
     </div>
-
+    <asp:Button ID="btnSignOut" runat="server" Text="Sign Out" OnClick="btnSignOut_Click" />
 </asp:Content>
