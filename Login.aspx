@@ -8,6 +8,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <asp:Label ID="lblMsg" runat="server" Text="Label"></asp:Label>
         <div class="form-group">
             <asp:TextBox ID="txtEmail" type="email" runat="server" placeholder="email address"></asp:TextBox>
         </div>
