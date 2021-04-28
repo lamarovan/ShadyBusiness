@@ -17,7 +17,6 @@ namespace ShadyBusiness
             // default load data
             if (!this.IsPostBack)
             {
-                Console.WriteLine("inside post back");
                 this.BindGrid();
             }
         }

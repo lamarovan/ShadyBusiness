@@ -17,6 +17,9 @@ namespace ShadyBusiness
         static List<Dictionary<string,int>> itemList = new List<Dictionary<string, int>>();
         private int purchaseUnit, item, customer;
         string constr = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+        string pid = "";
+        int totalAmount = 0;
+
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -24,11 +27,42 @@ namespace ShadyBusiness
         }
         protected void btnPurchase_Click(object sender, EventArgs e)
         {
-            customer = int.Parse(ddlMember.SelectedValue.ToString());
             Debug.WriteLine(""+itemList.Count);
 
-            int totalAmount = 0;
+            Debug.WriteLine(User.Identity.Name);
 
+            getTotalAmount();
+
+            createPurchase();
+
+            getPurchaseID();
+
+            createPurchaseDetails();
+        }
+
+        private void getPurchaseID()
+        {
+            string queryID = "SELECT TOP 1 purchase_id FROM purchase ORDER BY purchase_id DESC ";
+            OleDbCommand id = new OleDbCommand(queryID);
+
+            using (OleDbConnection con = new OleDbConnection(constr))
+            {
+                id.Connection = con;
+                con.Open();
+
+                OleDbDataReader sdr = id.ExecuteReader();
+                while (sdr.Read())
+                {
+                    pid = sdr.GetValue(0).ToString();
+                }
+
+                Debug.WriteLine("id = " + pid);
+                con.Close();
+            }
+        }
+
+        private void createPurchaseDetails()
+        {
             foreach (Dictionary<string, int> purchaseItem in itemList)
             {
                 int item = purchaseItem["item"];
@@ -38,21 +72,74 @@ namespace ShadyBusiness
                 OleDbConnection con = new OleDbConnection(constr);
                 con.Open();
                 cmd.Connection = con;
-                cmd.CommandText = @"SELECT "+ purchaseUnit +"*price AS line_total FROM [item] WHERE item_code =" + item;
+                cmd.CommandText = @"SELECT " + purchaseUnit + "*price AS line_total FROM [item] WHERE item_code =" + item;
                 OleDbDataReader sdr = cmd.ExecuteReader();
-                string lineTotal="";
+                string lineTotal = "";
                 while (sdr.Read())
                 {
-                   lineTotal = sdr.GetValue(sdr.GetOrdinal("line_total")).ToString();
+                    lineTotal = sdr.GetValue(sdr.GetOrdinal("line_total")).ToString();
                 }
                 con.Close();
-               int intLineTotal = int.Parse(lineTotal);
+                int intLineTotal = int.Parse(lineTotal);
+                totalAmount += intLineTotal;
+                Debug.WriteLine("item = " + purchaseItem["item"].ToString());
+                Debug.WriteLine("unit = " + purchaseItem["purchaseUnit"].ToString());
+
+                string query = "INSERT INTO [purchase_item] values ('" + pid + "', '" + item + "', '" + purchaseUnit + "','" + intLineTotal + "')";
+                OleDbCommand insert = new OleDbCommand(query);
+                using (OleDbConnection conn = new OleDbConnection(constr))
+                {
+                    insert.Connection = conn;
+                    conn.Open();
+                    int affected = insert.ExecuteNonQuery();
+                    conn.Close();
+                }
+
+            }
+        }
+
+        private void createPurchase()
+        {
+            customer = int.Parse(ddlMember.SelectedValue.ToString());
+            String date = DateTime.Now.ToString("yyyy.MM.dd");
+            string query = "INSERT INTO [purchase] values ('" + date + "', '" + totalAmount + "', '" + customer + "','" + User.Identity.Name + "')";
+            OleDbCommand ins = new OleDbCommand(query);
+            using (OleDbConnection con = new OleDbConnection(constr))
+            {
+                ins.Connection = con;
+                con.Open();
+                int affected = ins.ExecuteNonQuery();
+                con.Close();
+            }
+
+        }
+
+        private void getTotalAmount()
+        {
+            foreach (Dictionary<string, int> purchaseItem in itemList)
+            {
+                int item = purchaseItem["item"];
+                int purchaseUnit = purchaseItem["purchaseUnit"];
+
+                OleDbCommand cmd = new OleDbCommand();
+                OleDbConnection con = new OleDbConnection(constr);
+                con.Open();
+                cmd.Connection = con;
+                cmd.CommandText = @"SELECT " + purchaseUnit + "*price AS line_total FROM [item] WHERE item_code =" + item;
+                OleDbDataReader sdr = cmd.ExecuteReader();
+                string lineTotal = "";
+                while (sdr.Read())
+                {
+                    lineTotal = sdr.GetValue(sdr.GetOrdinal("line_total")).ToString();
+                }
+                con.Close();
+                int intLineTotal = int.Parse(lineTotal);
                 totalAmount += intLineTotal;
                 Debug.WriteLine("item = " + purchaseItem["item"].ToString());
                 Debug.WriteLine("unit = " + purchaseItem["purchaseUnit"].ToString());
             }
-            Debug.WriteLine(totalAmount);
         }
+
         protected void btnAddItem_Click(object sender, EventArgs e)
         {
             item = int.Parse(ddlItem.SelectedValue.ToString());
@@ -62,7 +149,8 @@ namespace ShadyBusiness
             itemDetails.Add("item", item);
             itemDetails.Add("purchaseUnit", purchaseUnit);
             Debug.WriteLine(itemDetails["item"]);
-            Debug.WriteLine(itemDetails["purchaseUnit"]);
+            Debug.WriteLine(itemDetails["purchase" +
+                "Unit"]);
             itemList.Add(itemDetails);
             Debug.WriteLine("" + itemList.Count);
 
