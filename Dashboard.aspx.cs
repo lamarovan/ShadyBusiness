@@ -18,7 +18,7 @@ namespace ShadyBusiness
    
             if (!this.IsPostBack)
             {
-           
+                Debug.WriteLine("role = " + User.IsInRole("Admin"));
                 this.BindPurchaseGrid("1");//purchase details
                 this.BindStockoutGrid("item_name"); //out of stock
                 this.BindInactiveCustomersGrid(); // inactive customers

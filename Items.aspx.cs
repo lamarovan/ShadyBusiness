@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.OleDb;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -12,14 +13,41 @@ namespace ShadyBusiness
 {
     public partial class Items : System.Web.UI.Page
     {
+
+        private String userId, userType = "";
+        string constr = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             // default load data
             if (!this.IsPostBack)
             {
                 this.BindGrid();
+                getAuthenticatedUserType();
+               
+
             }
         }
+
+        private void getAuthenticatedUserType()
+        {
+            userId = User.Identity.Name;
+            string query = "SELECT user_type FROM [user] WHERE user_id = " + userId;
+            OleDbCommand val = new OleDbCommand(query);
+            using (OleDbConnection con = new OleDbConnection(constr))
+            {
+                val.Connection = con;
+                con.Open();
+                OleDbDataReader sdr = val.ExecuteReader();
+                while (sdr.Read())
+                {
+                    userType = sdr.GetValue(0).ToString();
+                }
+                Debug.WriteLine("user type = " + userType);
+                con.Close();
+            }
+        }
+
         private void BindGrid()
         {
             string constr = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
@@ -74,6 +102,11 @@ namespace ShadyBusiness
         }
         protected void GridView1_RowDataBound(object sender, GridViewRowEventArgs e)
         {
+            getAuthenticatedUserType();
+            if (userType.Equals("staff")) {
+                e.Row.Cells[0].Visible = false;
+            }
+
             if (e.Row.RowType == DataControlRowType.DataRow && e.Row.RowIndex != GridView1.EditIndex)
             {
                 (e.Row.Cells[0].Controls[2] as LinkButton).Attributes["onclick"] = "return confirm('Do you want to delete this row?');";

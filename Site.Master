@@ -219,7 +219,7 @@
             <li><a runat="server" href="~/Category">Category</a></li>
             <li><a runat="server" href="~/Staff">Staff</a></li>
             <li><a runat="server" href="~/Profile">Profile</a></li>
-            <li><a runat="server" href="~/Customer">Sign Out</a></li>
+            <li>  <asp:LinkButton ID="btnSignOut" runat="server" Text="Sign Out" OnClick="btnSignOut_Click" /> </li>
         </ul>
         <div class="container body-content">
             <asp:ContentPlaceHolder ID="MainContent" runat="server">
