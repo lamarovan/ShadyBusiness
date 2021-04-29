@@ -135,6 +135,7 @@
     <Content Include="Profile.aspx" />
     <Content Include="Purchase.aspx" />
     <Content Include="PurchaseDetails.aspx" />
+    <Content Include="PurchaseList.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -356,6 +357,13 @@
     </Compile>
     <Compile Include="PurchaseDetails.aspx.designer.cs">
       <DependentUpon>PurchaseDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="PurchaseList.aspx.cs">
+      <DependentUpon>PurchaseList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PurchaseList.aspx.designer.cs">
+      <DependentUpon>PurchaseList.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

@@ -2,16 +2,18 @@
 
 <asp:Content ID="Category" ContentPlaceHolderID="MainContent" runat="server">
     <div class="pt-3">
-        <h3>Category</h3>
+        <h3>Category Form</h3><br />
         <div class="form-group">
             <label>Category</label>
             <asp:TextBox ID="txtCategory" runat="server" CssClass="form-control" placeholder="Aviator" ValidationGroup="valCategory"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Category required!" ControlToValidate="txtCategory" ForeColor="Red" ValidationGroup="valCategory"></asp:RequiredFieldValidator>
         </div>
-        <asp:Button ID="btnSubmit" runat="server" Text="Insert" CssClass="btn btn-primary" OnClick="btnSubmit_Click" ValidationGroup="valCategory" />
+        <asp:Button ID="btnSubmit" runat="server" Text="     ADD CATEGORY     " CssClass="btn btn-primary float-right" OnClick="btnSubmit_Click" ValidationGroup="valCategory" />
     </div>
+    <br /><br /><hr/><br />
+    <b style="font-size:24px;">View Categories</b><br /><br />
     <div>
-        <asp:GridView ID="GridView1" CssClass="table table-hover" runat="server"
+        <asp:GridView ID="GridView1" CssClass="table table-striped  table-bordered" runat="server"
             DataKeyNames="category_id"
             EmptyDataText="No records has been added."
             OnRowDataBound="GridView1_RowDataBound"

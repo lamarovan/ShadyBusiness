@@ -2,32 +2,36 @@
 
 <asp:Content ID="Customer" ContentPlaceHolderID="MainContent" runat="server">
     <div class="pt-3">
-        <h3>Customer</h3>
-        <div class="form-group">
+        <h3>Membership Form </h3><br />
+        <div class="form-row">
+        <div  class="form-group col-md-12">
             <label>Name</label>
-            <asp:TextBox ID="txtName" runat="server" placeholder="Name" CssClass="form-control"></asp:TextBox>
+            <asp:TextBox ID="txtName" runat="server" placeholder="Name" class="form-control"></asp:TextBox>
         </div>
-        <div class="form-group">
+        <div  class="form-group col-md-12">
             <label>Address</label>
-            <asp:TextBox ID="txtAddress" runat="server" placeholder="Address" CssClass="form-control"></asp:TextBox>
+            <asp:TextBox ID="txtAddress" runat="server" placeholder="Address" class="form-control"></asp:TextBox>
         </div>
-        <div class="form-group">
+        <div  class="form-group col-md-4">
             <label>Contact Number</label>
-            <asp:TextBox ID="txtNumber" runat="server" placeholder="+977 XXXXXXXXXX" CssClass="form-control"></asp:TextBox>
+            <asp:TextBox ID="txtNumber" runat="server" placeholder="+977 XXXXXXXXXX" class="form-control"></asp:TextBox>
         </div>
-        <div class="form-group">
+        <div  class="form-group col-md-4">
             <label>Email address</label>
-            <asp:TextBox ID="txtEmail" runat="server" placeholder="abc@email.com" CssClass="form-control"></asp:TextBox>
+            <asp:TextBox ID="txtEmail" runat="server" placeholder="abc@email.com" class="form-control"></asp:TextBox>
         </div>
-        <div class="form-group">
+        <div class="form-group col-md-4">
             <label>Member Type</label>
-            <asp:TextBox ID="txtType" runat="server" placeholder="Premium" CssClass="form-control"></asp:TextBox>
+            <asp:TextBox ID="txtType" runat="server" placeholder="Premium" class="form-control"></asp:TextBox>
+        </div>
         </div>
         <div>
-            <asp:Button ID="btnAdd" runat="server" Text="Add" OnClick="btnAdd_Click" CssClass="btn btn-primary" />
+            <asp:Button ID="btnAdd" runat="server" Text="     ADD CUSTOMER     " OnClick="btnAdd_Click" CssClass="btn btn-primary float-right" />
         </div>
+        <br /><br /><hr/><br />
+        <b style="font-size:24px;">View Customers</b><br /><br />
         <div>
-            <asp:GridView ID="GridView1" CssClass="table table-hover" runat="server" DataKeyNames="member_number"
+            <asp:GridView ID="GridView1" CssClass="table table-striped  table-bordered" runat="server" DataKeyNames="member_number"
                 EmptyDataText="No records has been added." 
                 OnRowEditing="GridView1_RowEditing"
                 OnRowDeleting="GridView1_RowDeleting"

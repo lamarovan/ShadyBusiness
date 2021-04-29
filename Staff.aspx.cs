@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.OleDb;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -12,16 +13,43 @@ namespace ShadyBusiness
 {
     public partial class Staff : System.Web.UI.Page
     {
+        string userType, userId = "";
+        string constr = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!this.IsPostBack)
             {
-                Console.WriteLine("inside post back");
                 this.BindGrid();
+                getAuthenticatedUserType();
+                if (userType.Equals("staff"))
+                {
+                    Response.Redirect("Dashboard.aspx");
+                }
+            }
+
+        }
+
+        private void getAuthenticatedUserType()
+        {
+            userId = HttpContext.Current.User.Identity.Name;
+            string query = "SELECT user_type FROM [user] WHERE user_id = " + userId;
+            OleDbCommand val = new OleDbCommand(query);
+            using (OleDbConnection con = new OleDbConnection(constr))
+            {
+                val.Connection = con;
+                con.Open();
+                OleDbDataReader sdr = val.ExecuteReader();
+                while (sdr.Read())
+                {
+                    userType = sdr.GetValue(0).ToString();
+                }
+
+                Debug.WriteLine("user type = " + userType);
+                con.Close();
             }
         }
 
-        private void BindGrid()
+            private void BindGrid()
         {
             string constr = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             OleDbCommand cmd = new OleDbCommand();
@@ -49,7 +77,7 @@ namespace ShadyBusiness
             string email = txtEmail.Text.ToString();
             string password = txtPassword.Text.ToString();
             string name = txtName.Text.ToString();
-            string type = "staff";
+            string type = ddlUserType.SelectedValue;
 
 
             string query = "INSERT INTO [user] values ('" + email + "', '" + password + "', '" + name + "','" + type  + "')";

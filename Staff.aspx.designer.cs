@@ -42,6 +42,24 @@ namespace ShadyBusiness
         protected global::System.Web.UI.WebControls.TextBox txtPassword;
 
         /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
+
+        /// <summary>
+        /// ddlUserType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlUserType;
+
+        /// <summary>
         /// btnInsert control.
         /// </summary>
         /// <remarks>

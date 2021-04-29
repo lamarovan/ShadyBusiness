@@ -105,6 +105,7 @@ namespace ShadyBusiness
             getAuthenticatedUserType();
             if (userType.Equals("staff")) {
                 e.Row.Cells[0].Visible = false;
+
             }
 
             if (e.Row.RowType == DataControlRowType.DataRow && e.Row.RowIndex != GridView1.EditIndex)

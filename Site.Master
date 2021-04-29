@@ -19,19 +19,21 @@
     <link href="Content/font-awesome.css" rel="stylesheet" />
     <style>
                        @import url("//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css");
-            
+        body {
+             background-color:whitesmoke;
+        }
             header{
                 padding:7px;
-                padding-left:100px;d
+                padding-left:100px;
                 height:70px;
-                background-color:lightgrey;
-                color:cornflowerblue;
+                background-color:#0066b2;
+                color:ghostwhite;
                 font-size: 40px;
 
             }   
 
             .bold{
-                 color:steelblue;
+                 color:whitesmoke;
 
             }
 
@@ -208,8 +210,7 @@
       
           <li title="Dashboard"><a runat="server" href="~/Dashboard" class="search">Dashboard</a></li>
           <li title="Membership"><a runat="server" href="~/Customer" class="pencil">Membership</a></li>
-          <li title="Purchase"><a runat="server" href="~/Purchase" class="active about">Purchase</a></li>
-          <li title="Notification"><a runat="server" href="~/Dashboard" class="archive">Notification</a></li>
+          <li title="PurchaseList"><a runat="server" href="~/PurchaseList" class="active about">Purchase</a></li>
           <!--<li title="contact"><a href="#" class="contact">contact</a></li>-->
         </ul>
     
@@ -217,7 +218,7 @@
             <li><a href="#" class="menu-button">Menu</a></li>
             <li><a runat="server" href="~/Items">Items</a></li>
             <li><a runat="server" href="~/Category">Category</a></li>
-            <li><a runat="server" href="~/Staff">Staff</a></li>
+            <li> <asp:HyperLink ID="lnkStaff" runat="server" href="./Staff">Staff</asp:HyperLink></li>
             <li><a runat="server" href="~/Profile">Profile</a></li>
             <li>  <asp:LinkButton ID="btnSignOut" runat="server" Text="Sign Out" OnClick="btnSignOut_Click" /> </li>
         </ul>

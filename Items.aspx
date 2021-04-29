@@ -2,43 +2,44 @@
 
 <asp:Content ID="Items" ContentPlaceHolderID="MainContent" runat="server">
     <div class="pt-3">
-        <h3>Items</h3>
-        <div class="form-group">
-            <label>Item Name</label>
-            <asp:TextBox ID="txtItem" runat="server" placeholder="Item Name"></asp:TextBox>
+        <h3>Item Form</h3><br />
+        <div class="form-row">
+        <div class="form-group col-md-12">
+            <label  >Item Name</label>
+            <asp:TextBox ID="txtItem" runat="server"  CssClass="form-control" placeholder="Item Name"></asp:TextBox>
         </div>
-        <div class="form-group">
-            <label>Description</label>
-            <asp:TextBox ID="txtDescription" runat="server" placeholder="Description"></asp:TextBox>
+        <div class="form-group col-md-12">
+            <label  >Description</label>
+            <asp:TextBox ID="txtDescription" runat="server"  CssClass="form-control" placeholder="Description"></asp:TextBox>
         </div>
-        <div class="form-group">
-            <label>Price</label>
-            <asp:TextBox ID="txtPrice" runat="server" placeholder="$XXX"></asp:TextBox>
+        <div class="form-group col-md-6">
+            <label   >Price</label>
+            <asp:TextBox ID="txtPrice"  CssClass="form-control" runat="server" placeholder="$XXX"></asp:TextBox>
         </div>
-        <div class="form-group">
-            <label>Category</label>
-            <asp:DropDownList ID="ddlCategory" runat="server" DataSourceID="SqlDataSource1" DataTextField="category_name" DataValueField="category_id"></asp:DropDownList>
-            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionStringSB %>" ProviderName="<%$ ConnectionStrings:ConnectionStringSB.ProviderName %>" SelectCommand="SELECT * FROM [category]"></asp:SqlDataSource>
+        <div class="form-group col-md-4">
+            <label  >Category</label>
+            <asp:DropDownList  CssClass="form-control" ID="ddlCategory" runat="server" DataSourceID="SqlDataSource1" DataTextField="category_name" DataValueField="category_id"></asp:DropDownList>
+            <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionStringSB.ProviderName %>" SelectCommand="SELECT * FROM [category]"></asp:SqlDataSource>
         </div>
-        <div class="form-group">
-            <label>Quantity</label>
-            <asp:TextBox ID="txtQuantity" runat="server" placeholder="10"></asp:TextBox>
+        <div class="form-group col-md-2">
+            <label  >Quantity</label>
+            <asp:TextBox ID="txtQuantity" CssClass="form-control" runat="server" placeholder="10"></asp:TextBox>
         </div>
-        <div class="form-group">
- 
         </div>
-        <asp:Button ID="btnInsert" runat="server" Text="Insert" CssClass="btn btn-primary" OnClick="btnInsert_Click" />
+        <asp:Button ID="btnInsert" runat="server"  Text="      ADD ITEM      " CssClass="btn btn-primary float-right" OnClick="btnInsert_Click" /><br />
+        <br /><br /><hr/><br />
+        <b style="font-size:24px;">View Items in Inventory</b>
         <div class="form-group float-right">
-            <label>Item</label>
-            <asp:DropDownList ID="ddlItem" runat="server" DataSourceID="SqlDataSource2" DataTextField="item_name" DataValueField="item_code"></asp:DropDownList>
-            <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionStringSB %>" ProviderName="<%$ ConnectionStrings:ConnectionStringSB.ProviderName %>" SelectCommand="SELECT [item_code], [item_name] FROM [item]"></asp:SqlDataSource>
-            <asp:Button ID="btnFilter" runat="server" Text="Filter" CssClass="btn btn-primary" OnClick="btnFilter_Click" />
-            <asp:Button ID="btnClear" runat="server" Text="Clear" CssClass="btn btn-danger" OnClick="btnClear_Click" />
+           
+            <asp:DropDownList ID="ddlItem" runat="server" class="form-control"  DataSourceID="SqlDataSource2" DataTextField="item_name" DataValueField="item_code"></asp:DropDownList><br />
+            <asp:SqlDataSource ID="SqlDataSource2"  runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionString %>" ProviderName="<%$ ConnectionStrings:ConnectionStringSB.ProviderName %>" SelectCommand="SELECT [item_code], [item_name] FROM [item]"></asp:SqlDataSource>
+            <asp:Button ID="btnFilter" runat="server"  Text="Filter" CssClass="btn btn-primary" OnClick="btnFilter_Click" />
+            <asp:Button ID="btnClear" runat="server"   Text="Clear" CssClass="btn btn-danger" OnClick="btnClear_Click" />
         </div>
     </div>
 
     <div>
-        <asp:GridView ID="GridView1" CssClass="table table-hover" runat="server"
+        <asp:GridView ID="GridView1" CssClass="table table-striped  table-bordered" runat="server"
             DataKeyNames="item_code"
             EmptyDataText="No records has been added."
             OnRowDataBound="GridView1_RowDataBound"

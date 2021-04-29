@@ -23,26 +23,29 @@ namespace ShadyBusiness
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            this.BindGrid();
         }
         protected void btnPurchase_Click(object sender, EventArgs e)
         {
-            Debug.WriteLine(""+itemList.Count);
+            Debug.WriteLine("" + itemList.Count);
 
             Debug.WriteLine(User.Identity.Name);
 
             getTotalAmount();
 
-            createPurchase();
-
-            getPurchaseID();
-
-            createPurchaseDetails();
-
-            Session["pid"] = pid;
-
-            Response.Redirect("PurchaseDetails.aspx");
-
+            if (itemList.Count != 0)
+            {
+                createPurchase();
+                getPurchaseID();
+                createPurchaseDetails();
+                Session["pid"] = pid;
+                Response.Redirect("PurchaseDetails.aspx");
+            }
+            else
+            {
+                Debug.WriteLine("no data");
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Add Items First!')", true);
+            }
         }
 
         private void getPurchaseID()
@@ -64,6 +67,23 @@ namespace ShadyBusiness
                 Debug.WriteLine("id = " + pid);
                 con.Close();
             }
+        }
+
+        protected void itemsGrid_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            int ID = Convert.ToInt32(itemsGrid.DataKeys[e.RowIndex].Values[0]);
+            foreach (Dictionary<string, int> purchaseItem in itemList)
+            {
+                Debug.WriteLine("ID: " + ID);
+                Debug.WriteLine("item: " + purchaseItem["item"]);
+                if (purchaseItem["item"] == ID)
+                {
+                    itemList.Remove(purchaseItem);
+                    break;
+                }
+
+            }
+            this.BindGrid();
         }
 
         private void createPurchaseDetails()
@@ -188,7 +208,7 @@ namespace ShadyBusiness
                 int item = itemDetails["item"];
                 int purchaseUnit = itemDetails["purchaseUnit"];
               
-                cmd.CommandText = @"SELECT item_name, description, price, "+purchaseUnit+" AS unit, " + purchaseUnit +"*price AS line_total FROM [item] WHERE item_code ="+item;
+                cmd.CommandText = @"SELECT item_code AS [ID], item_name, description, price, "+purchaseUnit+" AS unit, " + purchaseUnit +"*price AS line_total FROM [item] WHERE item_code ="+item;
                 cmd.CommandType = CommandType.Text;
                 using (OleDbDataReader sdr = cmd.ExecuteReader())
                 {

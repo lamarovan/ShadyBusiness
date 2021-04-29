@@ -55,7 +55,10 @@ namespace ShadyBusiness
                 //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Record Inserted Successfully')", true);
                 if (!IsPostBack)
                 {
-                    ScriptManager.RegisterStartupScript(Page, this.GetType(), "Exception", "alert('ALERT: " + val + " item has less than 10 units in stock')", true);
+                    ScriptManager.RegisterStartupScript(this, this.GetType(),
+"alert",
+"alert('ALERT: " + val + " item has less than 10 units in stock');",
+true);
                 }
             }
             con.Close();

@@ -21,7 +21,7 @@
 <div class="col-md-12">
        <div class="row">
 									<div class="col-sm-3">
-										<div class="card">
+										<div class="card" style="background-color:#ffcccb	;">
 											<div class="card-body">
 												<h5 class="card-title mb-4">Number of Sales</h5>
 												<h1 class="display-5 mt-1 mb-3">           
@@ -35,7 +35,7 @@
 										
 									</div>
 									<div class="col-sm-3">
-										<div class="card">
+										<div class="card" style="background-color:lemonchiffon;">
 											<div class="card-body">
 												<h5 class="card-title mb-4">Customers</h5>
 												<h1 class="display-5 mt-1 mb-3">
@@ -48,7 +48,7 @@
 										
 									</div>
 									<div class="col-sm-3">
-										<div class="card">
+										<div class="card" style="background-color:aliceblue;">
 											<div class="card-body">
 												<h5 class="card-title mb-4">Items in Inventory</h5>
 												<h1 class="display-5 mt-1 mb-3">
@@ -62,7 +62,7 @@
 										
 									</div>
 									<div class="col-sm-3">
-										<div class="card">
+										<div class="card" style="background-color:#e3fbe3;">
 											<div class="card-body">
 												<h5 class="card-title mb-4">Revenue</h5>
 												<h1 class="display-5 mt-1 mb-3">
@@ -90,7 +90,7 @@
                                             <div class="d-md-flex align-items-center">
                                                 <div>
                                                     <h4 class="card-title">Top Selling Products</h4>
-                                                    <h5 class="card-subtitle">Overview of Top Selling Items</h5>
+                                                    <h5 style="color:dimgrey;" class="card-subtitle">Overview of Top Selling Items</h5>
                                                 </div>
                                                  <div class="ml-auto">
                                                 <asp:DropDownList class="custom-select" ID="DropDownList2" runat="server"
@@ -114,7 +114,7 @@
                                             <div class="d-md-flex align-items-center">
                                                 <div>
                                                     <h4 class="card-title">Purchase Details</h4>
-                                                    <h5 class="card-subtitle">Purchase Records of Customer's last 31 days </h5>
+                                                    <h5  style="color:dimgrey;" class="card-subtitle">Purchase Records of Customer's last 31 days </h5>
                                                 </div>
                                                 <div class="ml-auto">
                                                     <asp:DropDownList class="custom-select"  ID="DropDownList1" AutoPostBack="True" runat="server" DataSourceID="SqlDataSource1" DataTextField="customer_name" DataValueField="member_number" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged"></asp:DropDownList>
@@ -135,7 +135,7 @@
                                             <div class="d-md-flex align-items-center">
                                                 <div>
                                                     <h4 class="card-title">Items out of stock</h4>
-                                                    <h5 class="card-subtitle">List of items that are out of stock.</h5>
+                                                    <h5 style="color:dimgrey;" class="card-subtitle">List of items that are out of stock.</h5>
                                                 </div>
 
                                                 <div class="ml-auto">
@@ -163,7 +163,7 @@
                                             <div class="d-md-flex align-items-center">
                                                 <div>
                                                     <h4 class="card-title">Unpopular Items</h4>
-                                                    <h5 class="card-subtitle">Items that hasn't be sold since last 31 days</h5>
+                                                    <h5 style="color:dimgrey;" class="card-subtitle">Items that hasn't be sold since last 31 days</h5>
                                                 </div>
                                                 <!--<div class="ml-auto">
                                                     <div class="dl">
@@ -196,7 +196,7 @@
                                             <div class="d-md-flex align-items-center">
                                                 <div>
                                                     <h4 class="card-title">In-active customers</h4>
-                                                    <h5 class="card-subtitle">Customers who have not made a purchase for last 31 days</h5>
+                                                    <h5  style="color:dimgrey;" class="card-subtitle">Customers who have not made a purchase for last 31 days</h5>
                                                 </div>
                                             </div><br>
                   <asp:GridView ID="GridView3"  class="table table-striped  table-bordered" runat="server"

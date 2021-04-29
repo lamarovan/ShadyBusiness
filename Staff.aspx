@@ -2,25 +2,34 @@
 
 <asp:Content ID="Items" ContentPlaceHolderID="MainContent" runat="server">
     <div class="pt-3">
-        <h3>Staff</h3>
-        <div class="form-group">
+        <h3>Register Staff</h3><br />
+        <div class="form-row">
+        <div class="form-group col-md-12" >
             <label>Name</label>
-            <asp:TextBox ID="txtName" runat="server" placeholder="Full Name"></asp:TextBox>
+            <asp:TextBox ID="txtName" CssClass="form-control" runat="server" placeholder="Full Name"></asp:TextBox>
         </div>
-        <div class="form-group">
+        <div class="form-group col-md-12">
             <label>Email</label>
-            <asp:TextBox ID="txtEmail" runat="server" placeholder="Email"></asp:TextBox>
+            <asp:TextBox ID="txtEmail" CssClass="form-control" runat="server" placeholder="Email"></asp:TextBox>
         </div>
-        <div class="form-group">
+        <div class="form-group col-md-6">
             <label>Password</label>
-            <asp:TextBox ID="txtPassword" runat="server" placeholder="Password"></asp:TextBox>
+            <asp:TextBox ID="txtPassword" CssClass="form-control" runat="server" placeholder="Password"></asp:TextBox>
         </div>
-       
-        
-        <asp:Button ID="btnInsert" runat="server" Text="Insert" CssClass="btn btn-primary" OnClick="btnInsert_Click" />
+        <div class="form-group col-md-6">
+            <asp:Label ID="Label1" style="margin-top:20px;" runat="server" Text="User Type"></asp:Label>
+            <asp:DropDownList CssClass="form-control" ID="ddlUserType" runat="server" >
+                <asp:ListItem Selected="True" Value="staff">Staff</asp:ListItem>
+                <asp:ListItem Value="admin">Admin</asp:ListItem>
+            </asp:DropDownList>
+        </div>
+       </div>
+        <asp:Button ID="btnInsert" runat="server" Text="     REGISTER     " CssClass="btn btn-primary float-right" OnClick="btnInsert_Click" />
     </div>
+    <br /><br /><hr/><br />
+    <b style="font-size:24px;">View Staffs</b><br /><br />
     <div>
-        <asp:GridView ID="GridView1" CssClass="table table-hover" runat="server"
+        <asp:GridView ID="GridView1" CssClass="table table-striped  table-bordered" runat="server"
             DataKeyNames="user_id"
             EmptyDataText="No records has been added."
             OnRowDataBound="GridView1_RowDataBound"

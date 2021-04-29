@@ -11,34 +11,25 @@ namespace ShadyBusiness
 {
 
 
-    public partial class SiteMaster
+    public partial class PurchaseList
     {
 
         /// <summary>
-        /// lnkStaff control.
+        /// btnAddPurchase control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink lnkStaff;
+        protected global::System.Web.UI.WebControls.Button btnAddPurchase;
 
         /// <summary>
-        /// btnSignOut control.
+        /// GridView1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnSignOut;
-
-        /// <summary>
-        /// MainContent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
+        protected global::System.Web.UI.WebControls.GridView GridView1;
     }
 }
