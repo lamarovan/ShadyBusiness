@@ -12,12 +12,17 @@ namespace ShadyBusiness
 {
     public partial class PurchaseDetails : System.Web.UI.Page
     {
-        int pid;
+        String pid;
         string constr = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            string query = "SELECT p.member_number, c.customer_name, c.customer_address, c.customer_email, p.purchase_date, p.total_amount FROM item i JOIN purchase_item pd ON i.item_code = pd.item_code JOIN purchase p ON p.purchase_id = pd.purchase_id JOIN customer c ON  p.member_number = c.member_number WHERE pd.purchase_id = 15";
+
+            pid = Session["pid"].ToString();
+
+            lblPID.Text = pid;
+
+            string query = "SELECT p.member_number, c.customer_name, c.customer_address, c.customer_email, p.purchase_date, p.total_amount FROM item i JOIN purchase_item pd ON i.item_code = pd.item_code JOIN purchase p ON p.purchase_id = pd.purchase_id JOIN customer c ON  p.member_number = c.member_number WHERE pd.purchase_id = "+pid;
 
             OleDbCommand val = new OleDbCommand(query);
 
@@ -53,7 +58,7 @@ namespace ShadyBusiness
             OleDbConnection con = new OleDbConnection(constr);
             con.Open();
             cmd.Connection = con;
-            cmd.CommandText = "SELECT i.item_name, i.description, i.price, p.purchase_unit AS PurchasedUnit, p.line_total AS LineTotal FROM item i JOIN purchase_item p ON i.item_code = p.item_code WHERE p.purchase_id = 15";
+            cmd.CommandText = "SELECT i.item_name, i.description, i.price, p.purchase_unit AS PurchasedUnit, p.line_total AS LineTotal FROM item i JOIN purchase_item p ON i.item_code = p.item_code WHERE p.purchase_id = "+pid;
             cmd.CommandType = CommandType.Text;
             DataTable dt = new DataTable("item");
 

@@ -38,6 +38,11 @@ namespace ShadyBusiness
             getPurchaseID();
 
             createPurchaseDetails();
+
+            Session["pid"] = pid;
+
+            Response.Redirect("PurchaseDetails.aspx");
+
         }
 
         private void getPurchaseID()
@@ -85,16 +90,29 @@ namespace ShadyBusiness
                 Debug.WriteLine("item = " + purchaseItem["item"].ToString());
                 Debug.WriteLine("unit = " + purchaseItem["purchaseUnit"].ToString());
 
-                string query = "INSERT INTO [purchase_item] values ('" + pid + "', '" + item + "', '" + purchaseUnit + "','" + intLineTotal + "')";
-                OleDbCommand insert = new OleDbCommand(query);
-                using (OleDbConnection conn = new OleDbConnection(constr))
+                //string query = "INSERT INTO [purchase_item] values ('" + pid + "', '" + item + "', '" + purchaseUnit + "','" + intLineTotal + "')";
+                //OleDbCommand insert = new OleDbCommand(query);
+                using (con)
                 {
-                    insert.Connection = conn;
-                    conn.Open();
-                    int affected = insert.ExecuteNonQuery();
-                    conn.Close();
+                    using (OleDbCommand ins = new OleDbCommand("INSERT INTO [purchase_item] values ('" + pid + "', '" + item + "', '" + purchaseUnit + "','" + intLineTotal + "')"))
+                    {
+                        ins.Connection = con;
+                        con.Open();
+                        ins.ExecuteNonQuery();
+                        con.Close();
+                    }
+                    //insert.Connection = conn;
+                    //conn.Open();
+                    //int affected = insert.ExecuteNonQuery();
+                    //conn.Close();
+                    using (OleDbCommand ins = new OleDbCommand("UPDATE item SET quantity = quantity - " + purchaseUnit + " WHERE item_code = " + item + ";"))
+                    {
+                        ins.Connection = con;
+                        con.Open();
+                        int affected = ins.ExecuteNonQuery();
+                        con.Close();
+                    }
                 }
-
             }
         }
 
@@ -139,6 +157,7 @@ namespace ShadyBusiness
                 Debug.WriteLine("unit = " + purchaseItem["purchaseUnit"].ToString());
             }
         }
+
 
         protected void btnAddItem_Click(object sender, EventArgs e)
         {

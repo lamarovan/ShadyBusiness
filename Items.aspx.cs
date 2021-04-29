@@ -137,5 +137,36 @@ namespace ShadyBusiness
             GridView1.EditIndex = -1;
             this.BindGrid();
         }
+
+    
+        protected void btnFilter_Click(object sender, EventArgs e)
+        {
+            string itemID = ddlItem.SelectedValue.ToString();
+
+            string constr = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            OleDbCommand cmd = new OleDbCommand();
+            OleDbConnection con = new OleDbConnection(constr);
+            con.Open();
+            cmd.Connection = con;
+            cmd.CommandText = "SELECT * FROM [item] WHERE item_code = " + itemID + " ";
+            cmd.CommandType = CommandType.Text;
+            DataTable dt = new DataTable("Dish_detail");
+
+            using (OleDbDataReader sdr = cmd.ExecuteReader())
+            {
+                dt.Load(sdr);
+            }
+
+            con.Close();
+
+            GridView1.DataSource = dt;
+            GridView1.DataBind();
+        }
+
+        protected void btnClear_Click(object sender, EventArgs e)
+        {
+            this.BindGrid();
+        }
+
     }
 }

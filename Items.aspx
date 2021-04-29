@@ -25,10 +25,18 @@
             <asp:TextBox ID="txtQuantity" runat="server" placeholder="10"></asp:TextBox>
         </div>
         <div class="form-group">
-            <label>Date</label>
+ 
         </div>
         <asp:Button ID="btnInsert" runat="server" Text="Insert" CssClass="btn btn-primary" OnClick="btnInsert_Click" />
+        <div class="form-group float-right">
+            <label>Item</label>
+            <asp:DropDownList ID="ddlItem" runat="server" DataSourceID="SqlDataSource2" DataTextField="item_name" DataValueField="item_code"></asp:DropDownList>
+            <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ConnectionStringSB %>" ProviderName="<%$ ConnectionStrings:ConnectionStringSB.ProviderName %>" SelectCommand="SELECT [item_code], [item_name] FROM [item]"></asp:SqlDataSource>
+            <asp:Button ID="btnFilter" runat="server" Text="Filter" CssClass="btn btn-primary" OnClick="btnFilter_Click" />
+            <asp:Button ID="btnClear" runat="server" Text="Clear" CssClass="btn btn-danger" OnClick="btnClear_Click" />
+        </div>
     </div>
+
     <div>
         <asp:GridView ID="GridView1" CssClass="table table-hover" runat="server"
             DataKeyNames="item_code"
