@@ -45,15 +45,8 @@ namespace ShadyBusiness
                 userId = sdr.GetValue(sdr.GetOrdinal("user_id")).ToString();
                 userName = sdr.GetValue(sdr.GetOrdinal("user_name")).ToString();
 
-                Dictionary<string, string> userDetail = new Dictionary<string, string>();
-                userDetail.Add("email", email);
-                userDetail.Add("password", password);
-                userDetail.Add("userType", userType);
-                userDetail.Add("userId", userId);
-                userDetail.Add("userName", userName);
 
                 Session["AuthenticatedUser"] = userType;
-
 
             }
 

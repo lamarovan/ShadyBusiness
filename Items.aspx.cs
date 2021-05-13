@@ -55,7 +55,7 @@ namespace ShadyBusiness
             OleDbConnection con = new OleDbConnection(constr);
             con.Open();
             cmd.Connection = con;
-            cmd.CommandText = "SELECT * FROM [item]";
+            cmd.CommandText = "SELECT i.[item_code],i.[item_name],i.[description],i.[price],c.[category_name],i.[quantity],i.[stocked_date] FROM [item] i JOIN [category] c  ON i.category_id = c.category_id";
             cmd.CommandType = CommandType.Text;
             DataTable dt = new DataTable("item");
 

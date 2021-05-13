@@ -125,7 +125,7 @@
                         </div>
                         <div class="form-group">
                             <label>Password:</label>
-                            <asp:TextBox ID="txtPassword" class="form-control" runat="server"></asp:TextBox>
+                            <asp:TextBox ID="txtPassword" class="form-control" runat="server" type="Password"></asp:TextBox>
                         </div>
                        <asp:Button ID="btnLogin" class="btn-outline-dark btn-block"  OnClick="btnLogin_Click"  runat="server" Text="Login" />
 

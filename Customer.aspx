@@ -7,26 +7,37 @@
         <div  class="form-group col-md-12">
             <label>Name</label>
             <asp:TextBox ID="txtName" runat="server" placeholder="Name" class="form-control"></asp:TextBox>
+            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Please enter text only" CssClass="alert-danger" ValidationExpression="^[a-zA-Z_ ]*$" ValidationGroup="valCustomer" ControlToValidate="txtName"></asp:RegularExpressionValidator><br/>
+        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="*required" CssClass="alert-danger" ControlToValidate="txtName" ValidationGroup="valCustomer"></asp:RequiredFieldValidator>
         </div>
         <div  class="form-group col-md-12">
             <label>Address</label>
             <asp:TextBox ID="txtAddress" runat="server" placeholder="Address" class="form-control"></asp:TextBox>
-        </div>
+            <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ErrorMessage="Please enter text only" CssClass="alert-danger" ValidationExpression="^[a-zA-Z_ ]*$" ValidationGroup="valCustomer" ControlToValidate="txtAddress"></asp:RegularExpressionValidator><br/>
+       <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="*required" CssClass="alert-danger" ControlToValidate="txtAddress" ValidationGroup="valCustomer"></asp:RequiredFieldValidator>
+            </div>
         <div  class="form-group col-md-4">
             <label>Contact Number</label>
-            <asp:TextBox ID="txtNumber" runat="server" placeholder="+977 XXXXXXXXXX" class="form-control"></asp:TextBox>
-        </div>
+            <asp:TextBox ID="txtNumber" runat="server" placeholder="XXXXXXXXXX" class="form-control"></asp:TextBox>
+<asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ErrorMessage="Contact Number must only have 10 digits" CssClass="alert-danger" ValidationExpression="^[0-9]{10}$" ValidationGroup="valCustomer" ControlToValidate="txtNumber"></asp:RegularExpressionValidator><br/>
+       <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="*required" CssClass="alert-danger" ControlToValidate="txtNumber" ValidationGroup="valCustomer"></asp:RequiredFieldValidator>
+            </div>
         <div  class="form-group col-md-4">
             <label>Email address</label>
             <asp:TextBox ID="txtEmail" runat="server" placeholder="abc@email.com" class="form-control"></asp:TextBox>
-        </div>
+        <asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server" ErrorMessage="Invalid email address" CssClass="alert-danger" ValidationExpression="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" ValidationGroup="valCustomer" ControlToValidate="txtEmail"></asp:RegularExpressionValidator><br/>
+       <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="*required" CssClass="alert-danger" ControlToValidate="txtEmail" ValidationGroup="valCustomer"></asp:RequiredFieldValidator>
+            </div>
         <div class="form-group col-md-4">
             <label>Member Type</label>
-            <asp:TextBox ID="txtType" runat="server" placeholder="Premium" class="form-control"></asp:TextBox>
+               <asp:DropDownList CssClass="form-control" ID="ddlType" runat="server" >
+                <asp:ListItem Selected="True" Value="premium">Premium</asp:ListItem>
+                <asp:ListItem Value="basic">Basic</asp:ListItem>
+            </asp:DropDownList>
         </div>
         </div>
         <div>
-            <asp:Button ID="btnAdd" runat="server" Text="     ADD CUSTOMER     " OnClick="btnAdd_Click" CssClass="btn btn-primary float-right" />
+            <asp:Button ID="btnAdd" runat="server" Text="     ADD CUSTOMER     " OnClick="btnAdd_Click" CssClass="btn btn-primary float-right" ValidationGroup="valCustomer" />
         </div>
         <br /><br /><hr/><br />
         <b style="font-size:24px;">View Customers</b><br /><br />

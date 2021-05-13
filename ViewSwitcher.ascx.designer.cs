@@ -9,7 +9,4 @@
 
 namespace ShadyBusiness {
     
-    
-    public partial class ViewSwitcher {
-    }
 }

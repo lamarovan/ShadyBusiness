@@ -55,7 +55,7 @@
                                                    <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label></h1>
 												</h1>
 												<div class="mb-1">
-													<span class="text-muted">Items in inventoey</span>
+													<span class="text-muted">Items in inventory</span>
 												</div>
 											</div>
 										</div>

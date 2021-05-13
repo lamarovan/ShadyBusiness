@@ -6,16 +6,20 @@
         <div class="form-row">
         <div class="form-group col-md-12">
             <label  >Item Name</label>
-            <asp:TextBox ID="txtItem" runat="server"  CssClass="form-control" placeholder="Item Name"></asp:TextBox>
-        </div>
+            <asp:TextBox ID="txtItem" runat="server"  CssClass="form-control" placeholder="Item Name" type="Text" ></asp:TextBox>
+            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Please enter text only" CssClass="alert-danger" ValidationExpression="^[a-zA-Z_ ]*$" ValidationGroup="itemValidation" ControlToValidate="txtItem"></asp:RegularExpressionValidator><br/>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtItem" CssClass="alert-danger" ErrorMessage="*required" ValidationGroup="itemValidation"></asp:RequiredFieldValidator>
+            </div>
         <div class="form-group col-md-12">
             <label  >Description</label>
             <asp:TextBox ID="txtDescription" runat="server"  CssClass="form-control" placeholder="Description"></asp:TextBox>
+            <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ErrorMessage="Please enter text only" CssClass="alert-danger" ValidationExpression="^[a-zA-Z_ ]*$" ValidationGroup="itemValidation" ControlToValidate="txtDescription"></asp:RegularExpressionValidator>
         </div>
         <div class="form-group col-md-6">
             <label   >Price</label>
-            <asp:TextBox ID="txtPrice"  CssClass="form-control" runat="server" placeholder="$XXX"></asp:TextBox>
-        </div>
+            <asp:TextBox ID="txtPrice"  CssClass="form-control" runat="server" placeholder="$XXX" type="Number"></asp:TextBox>
+       <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtPrice" CssClass="alert-danger" ErrorMessage="*required" ValidationGroup="itemValidation"></asp:RequiredFieldValidator>
+            </div>
         <div class="form-group col-md-4">
             <label  >Category</label>
             <asp:DropDownList  CssClass="form-control" ID="ddlCategory" runat="server" DataSourceID="SqlDataSource1" DataTextField="category_name" DataValueField="category_id"></asp:DropDownList>
@@ -23,10 +27,11 @@
         </div>
         <div class="form-group col-md-2">
             <label  >Quantity</label>
-            <asp:TextBox ID="txtQuantity" CssClass="form-control" runat="server" placeholder="10"></asp:TextBox>
+            <asp:TextBox ID="txtQuantity" CssClass="form-control" runat="server" placeholder="10" type="Number" ></asp:TextBox>
+             <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txtQuantity" CssClass="alert-danger" ErrorMessage="*required" ValidationGroup="itemValidation"></asp:RequiredFieldValidator>
         </div>
         </div>
-        <asp:Button ID="btnInsert" runat="server"  Text="      ADD ITEM      " CssClass="btn btn-primary float-right" OnClick="btnInsert_Click" /><br />
+        <asp:Button ID="btnInsert" runat="server"  Text="      ADD ITEM      " CssClass="btn btn-primary float-right" OnClick="btnInsert_Click" ValidationGroup="itemValidation" /><br />
         <br /><br /><hr/><br />
         <b style="font-size:24px;">View Items in Inventory</b>
         <div class="form-group float-right">

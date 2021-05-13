@@ -6,7 +6,8 @@
         <div class="form-group">
             <label>Category</label>
             <asp:TextBox ID="txtCategory" runat="server" CssClass="form-control" placeholder="Aviator" ValidationGroup="valCategory"></asp:TextBox>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="Category required!" ControlToValidate="txtCategory" ForeColor="Red" ValidationGroup="valCategory"></asp:RequiredFieldValidator>
+            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Please enter text only" CssClass="alert-danger" ValidationExpression="^[a-zA-Z_ ]*$" ValidationGroup="valCategory" ControlToValidate="txtCategory"></asp:RegularExpressionValidator><br/>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="*required" CssClass="alert-danger" ControlToValidate="txtCategory" ValidationGroup="valCategory"></asp:RequiredFieldValidator>
         </div>
         <asp:Button ID="btnSubmit" runat="server" Text="     ADD CATEGORY     " CssClass="btn btn-primary float-right" OnClick="btnSubmit_Click" ValidationGroup="valCategory" />
     </div>
@@ -17,7 +18,7 @@
             DataKeyNames="category_id"
             EmptyDataText="No records has been added."
             OnRowDataBound="GridView1_RowDataBound"
-            OnRowEditing="GridView1_RowEditing"
+OnRowEditing="GridView1_RowEditing"
             OnRowDeleting="GridView1_RowDeleting"
             OnRowUpdating="GridView1_RowUpdating"
             OnRowCancelingEdit="GridView1_RowCancelingEdit"

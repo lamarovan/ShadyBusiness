@@ -49,7 +49,7 @@ namespace ShadyBusiness
             string address = txtAddress.Text.ToString();
             string number = txtNumber.Text.ToString();
             string email = txtEmail.Text.ToString();
-            string type= txtType.Text.ToString();
+            string type = ddlType.SelectedValue;
             string query = "INSERT INTO [customer] values ('" + name + "', '" + address + "', '" + number + "','" + email + "', '" + type + "')";
             OleDbCommand cmd = new OleDbCommand(query);
             string constr = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
@@ -64,7 +64,7 @@ namespace ShadyBusiness
                 txtName.Text = "";
                 txtAddress.Text = "";
                 txtNumber.Text = "";
-                txtType.Text = "";
+      
                 txtEmail.Text = "";
             }
 

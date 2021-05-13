@@ -15,7 +15,8 @@ namespace ShadyBusiness
     public partial class Purchase : System.Web.UI.Page
     {
         static List<Dictionary<string,int>> itemList = new List<Dictionary<string, int>>();
-        private int purchaseUnit, item, customer;
+        static List<int> ids = new List<int>();
+        private int purchaseUnit, item, customer, quantity;
         string constr = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
         string pid = "";
         int totalAmount = 0;
@@ -27,10 +28,8 @@ namespace ShadyBusiness
         }
         protected void btnPurchase_Click(object sender, EventArgs e)
         {
-            Debug.WriteLine("" + itemList.Count);
 
-            Debug.WriteLine(User.Identity.Name);
-
+        
             getTotalAmount();
 
             if (itemList.Count != 0)
@@ -38,8 +37,12 @@ namespace ShadyBusiness
                 createPurchase();
                 getPurchaseID();
                 createPurchaseDetails();
+                ids.Clear();
+                itemList.Clear();
+                this.BindGrid();
                 Session["pid"] = pid;
                 Response.Redirect("PurchaseDetails.aspx");
+       
             }
             else
             {
@@ -69,22 +72,7 @@ namespace ShadyBusiness
             }
         }
 
-        protected void itemsGrid_RowDeleting(object sender, GridViewDeleteEventArgs e)
-        {
-            int ID = Convert.ToInt32(itemsGrid.DataKeys[e.RowIndex].Values[0]);
-            foreach (Dictionary<string, int> purchaseItem in itemList)
-            {
-                Debug.WriteLine("ID: " + ID);
-                Debug.WriteLine("item: " + purchaseItem["item"]);
-                if (purchaseItem["item"] == ID)
-                {
-                    itemList.Remove(purchaseItem);
-                    break;
-                }
 
-            }
-            this.BindGrid();
-        }
 
         private void createPurchaseDetails()
         {
@@ -178,22 +166,79 @@ namespace ShadyBusiness
             }
         }
 
+        protected void ddlItem_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.getQuantity();
+        }
+
+        protected void itemsGrid_RowDeleting1(object sender, GridViewDeleteEventArgs e)
+        {
+            int ID = Convert.ToInt32(itemsGrid.DataKeys[e.RowIndex].Values[0]);
+            foreach (Dictionary<string, int> purchaseItem in itemList)
+            {
+                Debug.WriteLine("ID: " + ID);
+                Debug.WriteLine("item: " + purchaseItem["item"]);
+                if (purchaseItem["item"] == ID)
+                {
+                    itemList.Remove(purchaseItem);
+                    ids.Remove(purchaseItem["item"]);
+                    break;
+                }
+
+            }
+
+            this.BindGrid();
+        }
+
+        protected void getQuantity()
+        {
+            string itemID = ddlItem.SelectedValue.ToString();
+            string queryID = "SELECT quantity FROM item WHERE item_code = " + itemID;
+            OleDbCommand idd = new OleDbCommand(queryID);
+            using (OleDbConnection con = new OleDbConnection(constr))
+            {
+                idd.Connection = con;
+                con.Open();
+
+                OleDbDataReader sdr = idd.ExecuteReader();
+                while (sdr.Read())
+                {
+                    quantity = Convert.ToInt32(sdr.GetValue(0).ToString());
+                }
+
+                Debug.WriteLine("quantity of item = " + quantity);
+                con.Close();
+            }
+
+            IEnumerable<int> numbers = Enumerable.Range(1, quantity);
+            ddlPurchaseUnit.DataSource = numbers;
+            ddlPurchaseUnit.DataBind();
+        }
+
+ 
 
         protected void btnAddItem_Click(object sender, EventArgs e)
         {
             item = int.Parse(ddlItem.SelectedValue.ToString());
-            purchaseUnit = int.Parse(txtPurchaseUnit.Text);
+            purchaseUnit = int.Parse(ddlPurchaseUnit.SelectedValue.ToString());
 
-            Dictionary<string, int> itemDetails = new Dictionary<string, int>();
-            itemDetails.Add("item", item);
-            itemDetails.Add("purchaseUnit", purchaseUnit);
-            Debug.WriteLine(itemDetails["item"]);
-            Debug.WriteLine(itemDetails["purchase" +
-                "Unit"]);
-            itemList.Add(itemDetails);
-            Debug.WriteLine("" + itemList.Count);
+            if (ids.Contains(item))
+            {
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "alert", "alert('The item already exists in cart.');", true);
+            }
+            else
+            {
+      
+                ids.Add(item);
 
-            this.BindGrid();
+                Dictionary<string, int> itemDetails = new Dictionary<string, int>();
+                itemDetails.Add("item", item);
+                itemDetails.Add("purchaseUnit", purchaseUnit);
+
+                itemList.Add(itemDetails);
+
+                this.BindGrid();
+            }
         }
         private void BindGrid()
         {

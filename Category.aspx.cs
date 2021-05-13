@@ -72,12 +72,6 @@ namespace ShadyBusiness
             }
         }
 
-        protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
-        {
-            GridView1.EditIndex = e.NewEditIndex;
-            this.BindGrid();
-        }
-
         protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             int ID = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Values[0]);
@@ -133,73 +127,13 @@ namespace ShadyBusiness
             GridView1.EditIndex = -1;
             this.BindGrid();
         }
-        //protected void OnRowUpdating(object sender, GridViewUpdateEventArgs e)
-        //{
-        //    GridViewRow row = GridView1.Rows[e.RowIndex];
-        //    int ID = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Values[0]);
-        //    string Name = (row.Cells[2].Controls[0] as TextBox).Text;
-        //    string constr = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-
-        //    using (OleDbConnection con = new OleDbConnection(constr))
-        //    {
-        //        using (OleDbCommand cmd = new OleDbCommand("update [category] set category_name = '" + Name + "' where category_id = " + ID))
-        //        {
-
-        //            cmd.Connection = con;
-        //            con.Open();
-
-        //            cmd.ExecuteNonQuery();
-        //            con.Close();
+  
 
 
-        //        }
-        //    }
-
-        //    GridView1.EditIndex = -1;
-        //    this.BindGrid();
-
-        //}
-        //protected void OnRowCancelingEdit(object sender, EventArgs e)
-        //{
-        //    GridView1.EditIndex = -1;
-        //    this.BindGrid();
-        //}
-        //protected void OnRowDeleting(object sender, GridViewDeleteEventArgs e)
-        //{
-        //    int ID = Convert.ToInt32(GridView1.DataKeys[e.RowIndex].Values[0]);
-        //    string constr = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
-        //    using (OleDbConnection con = new OleDbConnection(constr))
-        //    {
-        //        using (OleDbCommand cmd = new OleDbCommand("UPDATE dish_restaurant SET restaurant_id = null WHERE restaurant_id =" + ID + ";"))
-        //        {
-        //            cmd.Connection = con;
-        //            con.Open();
-        //            cmd.ExecuteNonQuery();
-        //            con.Close();
-        //        }
-        //        using (OleDbCommand cmd = new OleDbCommand("DELETE FROM [category] WHERE category_id =" + ID + ";"))
-        //        {
-        //            cmd.Connection = con;
-        //            con.Open();
-        //            cmd.ExecuteNonQuery();
-        //            con.Close();
-        //        }
-        //    }
-        //    this.BindGrid();
-
-        //}
-        //protected void OnRowDataBound(object sender, GridViewRowEventArgs e)
-        //{
-        //    if (e.Row.RowType == DataControlRowType.DataRow && e.Row.RowIndex != GridView1.EditIndex)
-        //    {
-        //        (e.Row.Cells[0].Controls[2] as LinkButton).Attributes["onclick"] = "return confirm('Do you want to delete this row?');";
-        //    }
-
-        //}
-        //protected void OnRowEditing(object sender, GridViewEditEventArgs e)
-        //{
-        //    GridView1.EditIndex = e.NewEditIndex;
-        //    this.BindGrid();
-        //}
+        protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
+        {
+            GridView1.EditIndex = e.NewEditIndex;
+            this.BindGrid();
+        }
     }
 }

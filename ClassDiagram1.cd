@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ShadyBusiness.CategoryForm">
+    <Position X="8.75" Y="1" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAgACAAAIAAABAAAAAAAAEAAAAAAEIgAgE=</HashCode>
+      <FileName>Category.aspx.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShadyBusiness.Customer">
+    <Position X="12.25" Y="7.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAgACAAAAAAABAAAAAAgJAkAAAAAAIgAEc=</HashCode>
+      <FileName>Customer.aspx.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShadyBusiness.Dashboard">
+    <Position X="13.75" Y="1" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>QIIAEAAAEAC8AAQAAAAACAAAAAAQAAAAACAEACIQAAE=</HashCode>
+      <FileName>Dashboard.aspx.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShadyBusiness.Items">
+    <Position X="11.25" Y="1" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AIAQAIAAAABgACAACAAEQBAgAEAQIBAEAggBAQIwIAE=</HashCode>
+      <FileName>Items.aspx.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShadyBusiness.Login">
+    <Position X="5.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAAAAAAAAAAAAAAAAIAAACIAAAAAAAAJAAAA=</HashCode>
+      <FileName>Login.aspx.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShadyBusiness.Profile">
+    <Position X="14.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAABAAAACAQABAAAAAAAAAAAIAAAAAAAAIAAAQ=</HashCode>
+      <FileName>Profile.aspx.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShadyBusiness.Purchase">
+    <Position X="6.5" Y="1" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAARBAAAACKAECQERAAACAAgFBADAAAAAAIACgA=</HashCode>
+      <FileName>Purchase.aspx.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShadyBusiness.PurchaseDetails">
+    <Position X="16.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gIAAAAAAEAAAACIAAAAAIBAAAIAAAAAEAAgAAAIAAQA=</HashCode>
+      <FileName>PurchaseDetails.aspx.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShadyBusiness.PurchaseList">
+    <Position X="7" Y="7.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>QIIAAAAAAAAgAAAAgAAAAAAAAAAAAAAAAAAAAAIAAAE=</HashCode>
+      <FileName>PurchaseList.aspx.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShadyBusiness.SiteMaster">
+    <Position X="9.75" Y="7.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAACAACACEAAAAAAAAAAAAAAgAAQIAAIA=</HashCode>
+      <FileName>Site.Master.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShadyBusiness.Staff">
+    <Position X="4" Y="1" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AIgQAAAAEAAgACAACAAAQBAAAAAAAIAMAAgAAQIgAAU=</HashCode>
+      <FileName>Staff.aspx.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

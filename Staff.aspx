@@ -7,15 +7,20 @@
         <div class="form-group col-md-12" >
             <label>Name</label>
             <asp:TextBox ID="txtName" CssClass="form-control" runat="server" placeholder="Full Name"></asp:TextBox>
-        </div>
+            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Please enter text only" CssClass="alert-danger" ValidationExpression="^[a-zA-Z_ ]*$" ValidationGroup="valStaff" ControlToValidate="txtName"></asp:RegularExpressionValidator><br/>
+         <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="*required" CssClass="alert-danger" ControlToValidate="txtName" ValidationGroup="valStaff"></asp:RequiredFieldValidator>
+            </div>
         <div class="form-group col-md-12">
             <label>Email</label>
             <asp:TextBox ID="txtEmail" CssClass="form-control" runat="server" placeholder="Email"></asp:TextBox>
+            <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ErrorMessage="Invalid email address" CssClass="alert-danger" ValidationExpression="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" ValidationGroup="valStaff" ControlToValidate="txtEmail"></asp:RegularExpressionValidator><br/>
+         <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="*required" CssClass="alert-danger" ControlToValidate="txtEmail" ValidationGroup="valStaff"></asp:RequiredFieldValidator>
         </div>
         <div class="form-group col-md-6">
             <label>Password</label>
-            <asp:TextBox ID="txtPassword" CssClass="form-control" runat="server" placeholder="Password"></asp:TextBox>
-        </div>
+            <asp:TextBox ID="txtPassword" CssClass="form-control" runat="server" placeholder="Password" type="Password"></asp:TextBox>
+        <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="*required" CssClass="alert-danger" ControlToValidate="txtPassword" ValidationGroup="valStaff"></asp:RequiredFieldValidator>
+            </div>
         <div class="form-group col-md-6">
             <asp:Label ID="Label1" style="margin-top:20px;" runat="server" Text="User Type"></asp:Label>
             <asp:DropDownList CssClass="form-control" ID="ddlUserType" runat="server" >
@@ -24,7 +29,7 @@
             </asp:DropDownList>
         </div>
        </div>
-        <asp:Button ID="btnInsert" runat="server" Text="     REGISTER     " CssClass="btn btn-primary float-right" OnClick="btnInsert_Click" />
+        <asp:Button ID="btnInsert" runat="server" Text="     REGISTER     " CssClass="btn btn-primary float-right" OnClick="btnInsert_Click" ValidationGroup="valStaff" />
     </div>
     <br /><br /><hr/><br />
     <b style="font-size:24px;">View Staffs</b><br /><br />
